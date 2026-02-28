@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Resume — Osman Goni Akash, Business Analytics Graduate">
+    <meta name="author" content="Osman Goni Akash">
+    <title>Osman Goni Akash — Resume 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════
+           CSS RESET & BASE
+           ══════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #d0d0d0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #1a56db;
+            text-decoration: none;
+        }
+        a:hover, a:focus {
+            text-decoration: underline;
+            outline: 2px solid #1a56db;
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        /* Skip-to-content (accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: #111;
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 9999;
+            font-size: 14px;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ══════════════════════════════════════════
+           PAGE SHELL
+           ══════════════════════════════════════════ */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 8mm auto;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            display: flex;
+            flex-direction: column;
+            padding: 11mm 14mm 11mm;
+        }
+
+        /* ══════════════════════════════════════════
+           TOP BANNER
+           ══════════════════════════════════════════ */
+        .banner {
+            border-top: 2.5px solid #222;
+            border-bottom: 2.5px solid #222;
+            text-align: center;
+            padding: 9px 0;
+            margin-bottom: 15px;
+        }
+        .banner h1 {
+            font-size: 15pt;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        /* ══════════════════════════════════════════
+           TOP INFO ROW
+           ══════════════════════════════════════════ */
+        .top-info {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 0;
+        }
+        .bio-text {
+            font-size: 9.5pt;
+            line-height: 1.7;
+            color: #333;
+            text-align: justify;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            min-width: 168px;
+            justify-content: center;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 9.5pt;
+            color: #333;
+            line-height: 1.45;
+        }
+        .contact-item svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ══════════════════════════════════════════
+           MAIN TWO-COLUMN BODY
+           ══════════════════════════════════════════ */
+        .main-body {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 0;
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .left-col {
+            padding-right: 16px;
+            border-right: 1px solid #ddd;
+        }
+        .right-col {
+            padding-left: 16px;
+        }
+
+        /* ══════════════════════════════════════════
+           SECTION HEADERS
+           ══════════════════════════════════════════ */
+        .section-header {
+            font-size: 10pt;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #111;
+            background: #f2f2f2;
+            padding: 6px 8px;
+            margin-top: 17px;
+            margin-bottom: 13px;
+            border-bottom: 1px solid #bbb;
+        }
+
+        /* ══════════════════════════════════════════
+           WORK EXPERIENCE
+           ══════════════════════════════════════════ */
+        .job {
+            margin-bottom: 16px;
+            padding-left: 15px;
+            position: relative;
+        }
+        .job::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 8.5pt;
+            color: #222;
+            line-height: 1;
+        }
+        .job-date {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .job-location {
+            font-size: 9pt;
+            color: #555;
+            margin-bottom: 2px;
+        }
+        .job-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .job ul {
+            list-style: disc;
+            margin-left: 15px;
+        }
+        .job ul li {
+            font-size: 9pt;
+            color: #333;
+            line-height: 1.65;
+            margin-bottom: 4px;
+            text-align: justify;
+        }
+
+        /* ══════════════════════════════════════════
+           EDUCATION
+           ══════════════════════════════════════════ */
+        .edu-item {
+            margin-bottom: 14px;
+        }
+        .edu-year {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #111;
+        }
+        .edu-school {
+            font-size: 9pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 1.45;
+            margin-bottom: 3px;
+        }
+        .edu-bullets {
+            list-style: disc;
+            margin-left: 15px;
+        }
+        .edu-bullets li {
+            font-size: 9pt;
+            color: #333;
+            line-height: 1.65;
+        }
+
+        /* ══════════════════════════════════════════
+           SKILLS & LANGUAGES
+           ══════════════════════════════════════════ */
+        .skills-list,
+        .lang-list {
+            list-style: disc;
+            margin-left: 15px;
+        }
+        .skills-list li,
+        .lang-list li {
+            font-size: 9pt;
+            color: #333;
+            line-height: 1.85;
+        }
+
+        /* ══════════════════════════════════════════
+           TOOLBAR (Print + Download)
+           ══════════════════════════════════════════ */
+        .toolbar {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+        }
+        .toolbar button {
+            background: #111;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s ease;
+        }
+        .toolbar button:hover,
+        .toolbar button:focus {
+            background: #333;
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+        .toolbar button svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ══════════════════════════════════════════
+           @MEDIA PRINT  — Clean, B&W, no-nav
+           ══════════════════════════════════════════ */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .no-print,
+            .toolbar {
+                display: none !important;
+            }
+            html, body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                overflow: hidden;
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+            .main-body {
+                display: grid !important;
+                grid-template-columns: 1.7fr 1fr !important;
+            }
+            .section-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Ensure links show URL after text for paper */
+            .contact-item a::after {
+                content: none; /* keep it clean — URL visible inline already */
+            }
+            .video-link {
+                display: none; /* hide video link on print — not useful on paper */
+            }
+        }
+
+        /* ══════════════════════════════════════════
+           @MEDIA RESPONSIVE  — Mobile / Tablet
+           ══════════════════════════════════════════ */
+        @media screen and (max-width: 900px) {
+            body {
+                background: #fff;
+            }
+            .page {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                padding: 20px 16px;
+                box-shadow: none;
+            }
+            .top-info {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .contact-info {
+                min-width: unset;
+            }
+            .main-body {
+                grid-template-columns: 1fr;
+            }
+            .left-col {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 16px;
+                margin-bottom: 8px;
+            }
+            .right-col {
+                padding-left: 0;
+            }
+            .toolbar {
+                position: sticky;
+                top: 0;
+                right: auto;
+                background: #fff;
+                padding: 8px 0;
+                justify-content: center;
+                border-bottom: 1px solid #ddd;
+                z-index: 1000;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .banner h1 {
+                font-size: 11pt;
+                letter-spacing: 0.12em;
+            }
+            .bio-text {
+                text-align: left;
+                font-size: 9pt;
+            }
+            .section-header {
+                font-size: 9pt;
+            }
+            .toolbar button {
+                padding: 8px 14px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Accessibility: skip link -->
+    <a href="#main-content" class="skip-link no-print">Skip to main content</a>
+
+    <!-- Toolbar: Print + Download PDF -->
+    <nav class="toolbar no-print" aria-label="Resume actions">
+        <button onclick="window.print()" aria-label="Print this resume or save as PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"/>
+                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            Print / Save PDF
+        </button>
+        <button onclick="window.print()" aria-label="Download this resume as a PDF file">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF
+        </button>
+    </nav>
+
+    <main id="main-content">
+        <article class="page" role="document" aria-label="Resume of Osman Goni Akash">
+
+            <!-- Banner -->
+            <header class="banner">
+                <h1>Professional Resume &ndash; Osman Goni Akash</h1>
+            </header>
+
+            <!-- Top Info: Bio + Contact -->
+            <section class="top-info" aria-label="Summary and contact information">
+                <p class="bio-text">
+                    Highly motivated 23-year-old Business Analytics graduate with strong analytical, problem-solving, and team leadership skills.
+                    Experienced in leveraging data-driven insights to address complex business challenges and deliver impactful solutions.
+                    Proficient in advanced analytics tools and committed to driving efficiency and innovation in professional environments.
+                    Also proficient in various aspects of food industry line operations, including equipment maintenance, quality control, and inventory management.
+                </p>
+                <address class="contact-info" aria-label="Contact details">
+                    <div class="contact-item">
+                        <!-- Phone icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                        <span>+8801341769106</span>
+                    </div>
+                    <div class="contact-item">
+                        <!-- Email icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>osmangoniakash57@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <!-- Location icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Joynagar Govt Quarter,<br>Mirpur 13, Dhaka</span>
+                    </div>
+                    <div class="contact-item video-link" style="margin-top:4px;">
+                        <!-- Video icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                        <a href="YOUR_LOOM_LINK_HERE" target="_blank" rel="noopener noreferrer"
+                           style="color:#1a56db; font-weight:600; font-size:9pt;">
+                            See my 2-minute video intro
+                        </a>
+                    </div>
+                </address>
+            </section>
+
+            <!-- Main Body -->
+            <div class="main-body">
+
+                <!-- Left: Work Experience -->
+                <section class="left-col" aria-label="Work experience">
+                    <h2 class="section-header">Work Experience</h2>
+
+                    <article class="job">
+                        <div class="job-date">Jan 2024 &ndash; Jun 2025</div>
+                        <div class="job-location">South Yarra VIC 3141, Australia</div>
+                        <div class="job-title">Veritas Digital &ndash; Business Development Associate</div>
+                        <ul>
+                            <li>Partnered with a leading boutique marketing firm to acquire and close clients, contributing to a <strong>14% increase in company revenue</strong>.</li>
+                            <li>Applied business analytics to identify high-potential clients and developed customized strategies to meet their needs.</li>
+                            <li>Streamlined client acquisition and engagement processes through CRM management and data-driven reporting.</li>
+                            <li>Integrated <strong>AI Automation</strong> (n8n, Zapier) and <strong>Prompt Engineering</strong> to automate lead qualification and reporting workflows.</li>
+                        </ul>
+                    </article>
+
+                    <article class="job">
+                        <div class="job-date">Oct 2022 &ndash; Jun 2024</div>
+                        <div class="job-location">Broadmeadows VIC 3047, Australia</div>
+                        <div class="job-title">Davies Bakery &ndash; Production Managing Assistant</div>
+                        <ul>
+                            <li>Led a team while maintaining equipment efficiency and optimizing mixer/conveyor settings, reducing machinery downtime.</li>
+                            <li>Streamlined ingredient preparation workflows by strictly adhering to baking recipes, ensuring consistent quality and production speed.</li>
+                            <li>Rigorously followed GMP, HACCP, and OHS guidelines, leading to an overall reduction in workplace incidents.</li>
+                        </ul>
+                    </article>
+
+                    <article class="job">
+                        <div class="job-date">Mar 2022 &ndash; Sep 2022</div>
+                        <div class="job-location">Broadmeadows VIC 3047, Australia</div>
+                        <div class="job-title">Young Guns Container Crew &ndash; Warehouse Operative</div>
+                        <ul>
+                            <li>Systematically approached container unloading processes, increasing overall operational efficiency.</li>
+                            <li>Maintained an exemplary safety record by applying manual handling techniques, achieving a zero-injury rate.</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Right: Education, Skills, Languages -->
+                <aside class="right-col" aria-label="Education, skills and languages">
+                    <section>
+                        <h2 class="section-header">Education</h2>
+
+                        <div class="edu-item">
+                            <div class="edu-year">2022 &ndash; 2025</div>
+                            <div class="edu-school">Swinburne University of Technology &mdash; VIC, Australia</div>
+                            <ul class="edu-bullets">
+                                <li>Bachelor of Business Information Systems</li>
+                                <li>Majoring in Business Analytics</li>
+                            </ul>
+                        </div>
+
+                        <div class="edu-item">
+                            <div class="edu-year">2013 &ndash; 2020</div>
+                            <div class="edu-school">The Millennium Stars School &amp; College &mdash; Rangpur, Bangladesh</div>
+                            <ul class="edu-bullets">
+                                <li>SSC &nbsp;GPA &nbsp;5.0 / 5.0</li>
+                                <li>HSC &nbsp;GPA &nbsp;5.0 / 5.0</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="section-header">Skills</h2>
+                        <ul class="skills-list">
+                            <li>Power BI, Excel (Advanced)</li>
+                            <li>SAP S/4HANA, Tableau, SQL</li>
+                            <li>Python (Basic)</li>
+                            <li>Prompt Engineering, n8n, Zapier</li>
+                            <li>Claude Code, MCPs</li>
+                            <li>Data Analysis &amp; Visualization</li>
+                            <li>CRM Management &amp; MIS Reporting</li>
+                            <li>Inventory Management</li>
+                            <li>Quality Control (GMP / HACCP)</li>
+                            <li>Advanced Digital Literacy</li>
+                            <li>AI Automation &amp; Workflow Design</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="section-header">Languages</h2>
+                        <ul class="lang-list">
+                            <li>English &nbsp;(Professional)</li>
+                            <li>Bengali &nbsp;(Native)</li>
+                            <li>Hindi &nbsp;(Conversational)</li>
+                        </ul>
+                    </section>
+                </aside>
+
+            </div><!-- /.main-body -->
+
+        </article><!-- /.page -->
+    </main>
+
+</body>
+</html>
