@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abs0lutemadlad.github.io/Professional_Documents/sitemap.xml
