@@ -519,10 +519,6 @@ section {
 .project-link.muted { color: var(--muted-foreground); pointer-events: none; }
 
 /* ── DEMOS ───────────────────────────────────────────────── */
-@keyframes hint-breathe {
-  0%, 100% { opacity: 0.3; letter-spacing: 0.12em; }
-  50%       { opacity: 0.9; letter-spacing: 0.18em; }
-}
 .demos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -536,7 +532,8 @@ section {
   overflow: hidden;
   transition: border-color 0.4s ease;
 }
-.pr.has-demo:hover {
+.pr.has-demo:hover,
+.pr.has-demo.demo-open {
   border-color: var(--foreground);
 }
 .demo-card-header {
@@ -560,36 +557,46 @@ section {
   color: var(--muted-foreground);
   line-height: 1.6;
 }
-/* breathing expand bar — visible when collapsed, gone on hover */
-.expand-bar {
-  padding: 12px 28px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  animation: hint-breathe 2.8s ease-in-out infinite;
-  overflow: hidden;
-  max-height: 44px;
-  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
-}
-.pr.has-demo:hover .expand-bar {
-  animation: none;
+/* demo trigger bar — hidden until hover, stays visible when open */
+.demo-trigger-bar {
   max-height: 0;
+  overflow: hidden;
   opacity: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  border-top: 1px solid transparent;
+  padding: 0 40px;
 }
+.pr.has-demo:hover .demo-trigger-bar,
+.pr.has-demo.demo-open .demo-trigger-bar {
+  max-height: 80px;
+  opacity: 1;
+  border-top-color: var(--border);
+}
+.demo-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 12px 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.demo-toggle-btn:hover { opacity: 0.75; }
 /* grid-row collapse trick for smooth height animation */
 .demo-iframe-outer {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.pr.has-demo:hover .demo-iframe-outer {
+.pr.has-demo.demo-open .demo-iframe-outer {
   grid-template-rows: 1fr;
 }
 .demo-iframe-wrap {
@@ -1006,9 +1013,6 @@ footer .f-right a:hover { color: var(--foreground); }
             <span class="stack-item">Tailwind v4</span>
             <span class="stack-item">OpenRouter</span>
           </div>
-          <div class="project-links">
-            <span class="project-link muted">↓ hover to see demo</span>
-          </div>
         </div>
         <div class="project-visual">
           <div class="terminal-line cmd">POST /intake</div>
@@ -1023,7 +1027,9 @@ footer .f-right a:hover { color: var(--foreground); }
           <div class="terminal-line output">✓ Total estimate: $284,500 AUD<span class="cursor-blink"></span></div>
         </div>
       </div>
-      <div class="expand-bar">↓ &nbsp; hover to explore demo</div>
+      <div class="demo-trigger-bar">
+        <button class="demo-toggle-btn" data-label-open="✕ &nbsp;Close Demo" data-label-closed="▶ &nbsp;Watch the Interactive Demo">▶ &nbsp;Watch the Interactive Demo</button>
+      </div>
       <div class="demo-iframe-outer">
         <div class="demo-iframe-wrap">
           <iframe src="https://app.supademo.com/embed/cmospvez06b2aw9doquorsnh0" allowfullscreen loading="lazy" title="WSRG AI Estimating Assistant Demo"></iframe>
@@ -1136,9 +1142,6 @@ footer .f-right a:hover { color: var(--foreground); }
             <span class="stack-item">Claude API</span>
             <span class="stack-item">CRM Automation</span>
           </div>
-          <div class="project-links">
-            <span class="project-link muted">↓ hover to preview</span>
-          </div>
         </div>
         <div class="project-visual">
           <div class="terminal-line cmd">AGENT /prospect</div>
@@ -1149,7 +1152,9 @@ footer .f-right a:hover { color: var(--foreground); }
           <div class="terminal-line output">✓ 12 sequences activated<span class="cursor-blink"></span></div>
         </div>
       </div>
-      <div class="expand-bar">↓ &nbsp; hover to explore demo</div>
+      <div class="demo-trigger-bar">
+        <button class="demo-toggle-btn" data-label-open="✕ &nbsp;Close Demo" data-label-closed="▶ &nbsp;Watch the Interactive Demo">▶ &nbsp;Watch the Interactive Demo</button>
+      </div>
       <div class="demo-iframe-outer">
         <div class="demo-iframe-wrap">
           <div class="demo-placeholder">
@@ -1447,6 +1452,15 @@ footer .f-right a:hover { color: var(--foreground); }
   }, { threshold: 0.5 });
   const statsBar = document.querySelector('.stats-bar');
   if (statsBar) statsObserver.observe(statsBar);
+
+  // Demo toggle — click to open/close, stays open on mouse-out
+  document.querySelectorAll('.demo-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.pr');
+      const isOpen = row.classList.toggle('demo-open');
+      btn.innerHTML = isOpen ? btn.dataset.labelOpen : btn.dataset.labelClosed;
+    });
+  });
 </script>
 </body>
 </html>
