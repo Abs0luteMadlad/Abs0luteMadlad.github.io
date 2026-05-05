@@ -7,7 +7,7 @@
 <meta name="description" content="Business Analytics Graduate & AI Automation Specialist based in Dhaka, Bangladesh. Swinburne University — Melbourne, Australia.">
 <meta property="og:title" content="Osman Goni Akash — Portfolio">
 <meta property="og:description" content="Business Analytics · AI Automation · Systems Architecture">
-<meta property="og:url" content="https://abs0lutemadlad.github.io/Professional_Documents/">
+<meta property="og:url" content="https://abs0lutemadlad.github.io/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -898,6 +898,92 @@
   }
   footer .f-right a:hover { color: var(--accent); }
 
+  /* DEMOS */
+  .demos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .demo-card {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .demo-card:hover { border-color: var(--border2); }
+  .demo-card-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .demo-card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .demo-card-desc {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+  .demo-iframe-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .demo-iframe-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .demo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: var(--surface);
+  }
+  .demo-placeholder-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 20px;
+  }
+  .demo-placeholder-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .demo-placeholder-dot {
+    display: inline-block;
+    animation: blink 1.2s step-end infinite;
+  }
+  @media (max-width: 900px) {
+    .demos-grid { grid-template-columns: 1fr; }
+  }
+
   /* ANIMATIONS */
   .fade-up {
     opacity: 0;
@@ -943,6 +1029,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#demos">Demos</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -954,8 +1041,6 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
-
-  <div class="hero-tag">This portfolio was custom-made for the advertised MTO position at Bio-Xin Ltd.</div>
 
   <h1 class="hero-name">
     <div>Osman</div>
@@ -984,7 +1069,7 @@
       View Projects
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <a href="https://abs0lutemadlad.github.io/Professional_Documents/" class="btn-secondary" target="_blank">
+    <a href="https://abs0lutemadlad.github.io/" class="btn-secondary" target="_blank">
       Download CV
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
     </a>
@@ -1169,7 +1254,7 @@
         <span class="stack-item">Semantic Web</span>
       </div>
       <div class="project-links">
-        <a href="https://abs0lutemadlad.github.io/Professional_Documents/" class="project-link" target="_blank">
+        <a href="https://abs0lutemadlad.github.io/" class="project-link" target="_blank">
           Live Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="https://github.com/Abs0luteMadlad/Professional_Documents" class="project-link" target="_blank">
@@ -1181,9 +1266,55 @@
   </div>
 </section>
 
+<!-- DEMOS -->
+<section id="demos" style="max-width:1280px;margin:0 auto;padding:100px 48px;">
+  <div class="section-label">03 — Live Demos</div>
+  <h2 class="section-title">Things you can <em>interact with.</em></h2>
+
+  <div class="demos-grid">
+
+    <!-- WSRG AI Estimating Assistant -->
+    <div class="demo-card fade-up">
+      <div class="demo-card-header">
+        <div>
+          <div class="demo-card-title">WSRG AI Estimating Assistant</div>
+          <div class="demo-card-desc">Upload a tender PDF or site photos → AI generates a fully costed construction estimate grounded in Sydney Q2 2026 benchmark rates.</div>
+        </div>
+        <span class="project-tag green" style="flex-shrink:0"><span class="dot"></span>Live</span>
+      </div>
+      <div class="demo-iframe-wrap">
+        <!-- Replace the div below with: <iframe src="YOUR_SUPADEMO_EMBED_URL" allowfullscreen></iframe> -->
+        <div class="demo-placeholder">
+          <div class="demo-placeholder-icon">▶</div>
+          <div class="demo-placeholder-text">Interactive demo loading<span class="demo-placeholder-dot">...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Lead Gen Demo -->
+    <div class="demo-card fade-up fade-up-delay-1">
+      <div class="demo-card-header">
+        <div>
+          <div class="demo-card-title">AI Lead Gen & Nurture System</div>
+          <div class="demo-card-desc">End-to-end lead generation and nurture automation for agencies — prospect enrichment, AI-personalised outreach, and CRM pipeline on autopilot.</div>
+        </div>
+        <span class="project-tag amber" style="flex-shrink:0"><span class="dot"></span>Recording</span>
+      </div>
+      <div class="demo-iframe-wrap">
+        <!-- Replace the div below with: <iframe src="YOUR_SUPADEMO_EMBED_URL" allowfullscreen></iframe> -->
+        <div class="demo-placeholder">
+          <div class="demo-placeholder-icon">▶</div>
+          <div class="demo-placeholder-text">Demo being recorded<span class="demo-placeholder-dot">...</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">03 — Experience</div>
+  <div class="section-label">04 — Experience</div>
   <h2 class="section-title">Where I've <em>worked.</em></h2>
 
   <div class="exp-list">
@@ -1240,7 +1371,7 @@
 
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
-  <div class="section-label">04 — Contact</div>
+  <div class="section-label">05 — Contact</div>
   <div class="contact-grid">
     <div class="contact-left fade-up">
       <div class="big-text">Let's<br><span>work</span><br>together.</div>
@@ -1318,7 +1449,7 @@
   <div class="f-right">
     <a href="https://github.com/Abs0luteMadlad" target="_blank">GitHub</a>
     <a href="mailto:osmanakash56@gmail.com">Email</a>
-    <a href="https://abs0lutemadlad.github.io/Professional_Documents/" target="_blank">CV</a>
+    <a href="https://abs0lutemadlad.github.io/" target="_blank">CV</a>
   </div>
 </footer>
 
