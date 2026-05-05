@@ -2,26 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="3;url=https://abs0lutemadlad.github.io/Professional_Documents/">
     <title>Redirecting — Osman Goni Akash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --background: #ffffff;
+            --foreground: #0a0a0a;
+            --border: #e5e5e5;
+            --font-mono: "Geist Mono", monospace;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #0a0a0a;
+                --foreground: #fafafa;
+                --border: #383838;
+            }
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-mono);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #f5f5f5;
-            color: #333;
+            background: var(--background);
+            color: var(--foreground);
             text-align: center;
+            padding: 20px;
         }
-        a { color: #1a56db; }
+        .container {
+            max-width: 400px;
+            padding: 40px;
+            border: 1px solid var(--border);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 14px;
+            color: var(--foreground);
+            opacity: 0.7;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        a {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--foreground);
+            transition: opacity 0.15s;
+        }
+        a:hover { opacity: 0.6; }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Page not found</h1>
-        <p>Redirecting to my resume in 3 seconds…</p>
+    <div class="container">
+        <h1>404 — Lost</h1>
+        <p>This page doesn't exist. Redirecting to my resume in 3 seconds…</p>
         <p><a href="https://abs0lutemadlad.github.io/Professional_Documents/">Click here if not redirected</a></p>
     </div>
 </body>
