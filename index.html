@@ -524,6 +524,10 @@ section {
 .project-link.muted { color: var(--muted-foreground); pointer-events: none; }
 
 /* ── DEMOS ───────────────────────────────────────────────── */
+@keyframes hint-breathe {
+  0%, 100% { opacity: 0.3; letter-spacing: 0.12em; }
+  50%       { opacity: 0.9; letter-spacing: 0.18em; }
+}
 .demos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -535,6 +539,10 @@ section {
   background: var(--card);
   border: 1px solid var(--border);
   overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+.demo-card:hover {
+  border-color: var(--foreground);
 }
 .demo-card-header {
   padding: 24px 28px;
@@ -557,7 +565,40 @@ section {
   color: var(--muted-foreground);
   line-height: 1.6;
 }
+/* breathing expand bar — visible when collapsed, gone on hover */
+.expand-bar {
+  padding: 12px 28px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: hint-breathe 2.8s ease-in-out infinite;
+  overflow: hidden;
+  max-height: 44px;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+}
+.demo-card:hover .expand-bar {
+  animation: none;
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* grid-row collapse trick for smooth height animation */
+.demo-iframe-outer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.demo-card:hover .demo-iframe-outer {
+  grid-template-rows: 1fr;
+}
 .demo-iframe-wrap {
+  overflow: hidden;
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -1089,8 +1130,11 @@ footer .f-right a:hover { color: var(--foreground); }
         </div>
         <span class="project-tag green" style="flex-shrink:0;"><span class="dot"></span>Live</span>
       </div>
-      <div class="demo-iframe-wrap">
-        <iframe src="https://app.supademo.com/embed/cmospvez06b2aw9doquorsnh0" allowfullscreen loading="lazy" title="WSRG AI Estimating Assistant Demo"></iframe>
+      <div class="expand-bar">↓ &nbsp; hover to explore</div>
+      <div class="demo-iframe-outer">
+        <div class="demo-iframe-wrap">
+          <iframe src="https://app.supademo.com/embed/cmospvez06b2aw9doquorsnh0" allowfullscreen loading="lazy" title="WSRG AI Estimating Assistant Demo"></iframe>
+        </div>
       </div>
     </div>
 
@@ -1103,10 +1147,13 @@ footer .f-right a:hover { color: var(--foreground); }
         </div>
         <span class="project-tag amber" style="flex-shrink:0;"><span class="dot"></span>Coming Soon</span>
       </div>
-      <div class="demo-iframe-wrap">
-        <div class="demo-placeholder">
-          <div class="demo-placeholder-icon">▶</div>
-          <div class="demo-placeholder-text">Demo being recorded</div>
+      <div class="expand-bar">↓ &nbsp; hover to explore</div>
+      <div class="demo-iframe-outer">
+        <div class="demo-iframe-wrap">
+          <div class="demo-placeholder">
+            <div class="demo-placeholder-icon">▶</div>
+            <div class="demo-placeholder-text">Demo being recorded</div>
+          </div>
         </div>
       </div>
     </div>
