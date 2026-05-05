@@ -401,32 +401,27 @@ section {
   border: 1px solid var(--border);
 }
 
-/* ── PROJECTS ────────────────────────────────────────────── */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
+/* ── PROJECTS (unified) ──────────────────────────────────── */
+.project-list {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
 }
-.project-card {
-  background: var(--card);
-  padding: 36px;
-  text-decoration: none;
-  display: block;
-  transition: background 0.1s;
-  position: relative;
+.pr {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.4s ease;
 }
-.project-card:hover { background: var(--secondary); }
-
-.project-card.featured {
-  grid-column: span 2;
+.pr:last-child { border-bottom: none; }
+.pr.has-demo:hover { border-color: var(--foreground); }
+.pr-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: start;
+  padding: 40px;
 }
-.project-card.featured .project-visual {
+.pr-head .project-visual {
   background: var(--secondary);
   border: 1px solid var(--border);
   padding: 28px;
@@ -858,8 +853,7 @@ footer .f-right a:hover { color: var(--foreground); }
   .stat-item:last-child { border-bottom: none; }
   section { padding: 60px 20px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+  .pr-head { grid-template-columns: 1fr; }
   .demos-grid { grid-template-columns: 1fr; }
   .exp-item { grid-template-columns: 1fr; gap: 12px; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -987,150 +981,49 @@ footer .f-right a:hover { color: var(--foreground); }
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS + DEMOS (unified) -->
 <section id="projects" style="border-bottom:1px solid var(--border);padding:100px 40px;max-width:1280px;margin:0 auto;">
   <div class="section-header">
     <span class="section-label">02 — Projects</span>
     <h2 class="section-title">Things I've <em>built.</em></h2>
   </div>
 
-  <div class="projects-grid">
+  <div class="project-list">
 
-    <!-- FEATURED: WSRG -->
-    <div class="project-card featured fade-up">
-      <div class="project-content">
-        <div class="project-num">001 — Featured</div>
-        <span class="project-tag green"><span class="dot"></span>Live</span>
-        <h3 class="project-title">WSRG AI Estimating Assistant</h3>
-        <p class="project-desc">Two-mode AI estimating tool for remedial construction. Upload a tender PDF for itemised cost extraction, or upload site photos for AI-powered visual defect inspection and commercial estimate. Grounded in Sydney Q2 2026 benchmark rates.</p>
-        <div class="project-stack">
-          <span class="stack-item">FastAPI</span>
-          <span class="stack-item">React</span>
-          <span class="stack-item">TypeScript</span>
-          <span class="stack-item">Claude Sonnet</span>
-          <span class="stack-item">Tailwind v4</span>
-          <span class="stack-item">OpenRouter</span>
+    <!-- 001 — WSRG (has demo) -->
+    <div class="pr has-demo fade-up" id="demos">
+      <div class="pr-head">
+        <div class="project-content">
+          <div class="project-num">001 — Featured</div>
+          <span class="project-tag green"><span class="dot"></span>Live</span>
+          <h3 class="project-title">WSRG AI Estimating Assistant</h3>
+          <p class="project-desc">Two-mode AI estimating tool for remedial construction. Upload a tender PDF for itemised cost extraction, or upload site photos for AI-powered visual defect inspection and commercial estimate. Grounded in Sydney Q2 2026 benchmark rates.</p>
+          <div class="project-stack">
+            <span class="stack-item">FastAPI</span>
+            <span class="stack-item">React</span>
+            <span class="stack-item">TypeScript</span>
+            <span class="stack-item">Claude Sonnet</span>
+            <span class="stack-item">Tailwind v4</span>
+            <span class="stack-item">OpenRouter</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link muted">↓ hover to see demo</span>
+          </div>
         </div>
-        <div class="project-links">
-          <a href="#demos" class="project-link">
-            Live Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="project-visual">
-        <div class="terminal-line cmd">POST /intake</div>
-        <div class="terminal-line output">→ Compressing 3 site images...</div>
-        <div class="terminal-line output">→ Running vision analysis...</div>
-        <div class="terminal-line output">→ Detected: Concrete spalling (High)</div>
-        <div class="terminal-line output">→ Detected: Waterproofing failure (Critical)</div>
-        <div class="terminal-line output">→ Generated 7 questionnaire items</div>
-        <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
-        <div class="terminal-line cmd">POST /estimate/visual</div>
-        <div class="terminal-line output">→ Applying Sydney Q2 2026 rates...</div>
-        <div class="terminal-line output">✓ Total estimate: $284,500 AUD<span class="cursor-blink"></span></div>
-      </div>
-    </div>
-
-    <!-- SkinIQ -->
-    <div class="project-card fade-up">
-      <div class="project-num">002</div>
-      <span class="project-tag green"><span class="dot"></span>Live</span>
-      <h3 class="project-title">SkinIQ Market Pulse</h3>
-      <p class="project-desc">Autonomous cosmeceutical market intelligence agent. Runs 24/7 on OpenClaw, executes 4 live web searches daily, synthesises signals through Claude API, and delivers structured intelligence reports to Telegram every morning at 08:00 BDT.</p>
-      <div class="project-stack">
-        <span class="stack-item">OpenClaw</span>
-        <span class="stack-item">Claude API</span>
-        <span class="stack-item">Telegram Bot</span>
-        <span class="stack-item">Autonomous Agent</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/Abs0luteMadlad/skiniq-market-pulse" class="project-link" target="_blank">
-          GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- CampaignOS -->
-    <div class="project-card fade-up">
-      <div class="project-num">003</div>
-      <span class="project-tag blue"><span class="dot"></span>In Progress</span>
-      <h3 class="project-title">CampaignOS</h3>
-      <p class="project-desc">AI-powered marketing campaign planner for FMCG brands. Input a product brief, get a full campaign structure — target segments, channels, budget split, KPIs — powered by Claude API. Built for the Bangladesh cosmeceutical market.</p>
-      <div class="project-stack">
-        <span class="stack-item">Claude API</span>
-        <span class="stack-item">Streamlit</span>
-        <span class="stack-item">Python</span>
-        <span class="stack-item">Prompt Engineering</span>
-      </div>
-      <div class="project-links">
-        <span class="project-link muted">Coming Soon</span>
-      </div>
-    </div>
-
-    <!-- SalesPulse -->
-    <div class="project-card fade-up fade-up-delay-1">
-      <div class="project-num">004</div>
-      <span class="project-tag amber"><span class="dot"></span>In Progress</span>
-      <h3 class="project-title">SalesPulse</h3>
-      <p class="project-desc">Interactive FMCG sales performance analytics dashboard. Regional breakdowns, trend analysis, and an AI-generated weekly digest — all from a clean Streamlit interface built on synthetic BD market data.</p>
-      <div class="project-stack">
-        <span class="stack-item">Python</span>
-        <span class="stack-item">Plotly</span>
-        <span class="stack-item">Streamlit</span>
-        <span class="stack-item">Pandas</span>
-      </div>
-      <div class="project-links">
-        <span class="project-link muted">Coming Soon</span>
-      </div>
-    </div>
-
-    <!-- DEMO: AI Lead Gen -->
-    <div class="project-card featured fade-up">
-      <div class="project-content">
-        <div class="project-num">005 — System Demo</div>
-        <span class="project-tag amber"><span class="dot"></span>Recording</span>
-        <h3 class="project-title">AI Lead Gen & Nurture System</h3>
-        <p class="project-desc">End-to-end lead generation and nurture automation for agencies — prospect enrichment, AI-personalised outreach, and CRM pipeline on autopilot.</p>
-        <div class="project-stack">
-          <span class="stack-item">n8n</span>
-          <span class="stack-item">Zapier</span>
-          <span class="stack-item">Claude API</span>
-          <span class="stack-item">CRM Automation</span>
-        </div>
-        <div class="project-links">
-           <span class="project-link muted">Demo being recorded</span>
+        <div class="project-visual">
+          <div class="terminal-line cmd">POST /intake</div>
+          <div class="terminal-line output">→ Compressing 3 site images...</div>
+          <div class="terminal-line output">→ Running vision analysis...</div>
+          <div class="terminal-line output">→ Detected: Concrete spalling (High)</div>
+          <div class="terminal-line output">→ Detected: Waterproofing failure (Critical)</div>
+          <div class="terminal-line output">→ Generated 7 questionnaire items</div>
+          <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
+          <div class="terminal-line cmd">POST /estimate/visual</div>
+          <div class="terminal-line output">→ Applying Sydney Q2 2026 rates...</div>
+          <div class="terminal-line output">✓ Total estimate: $284,500 AUD<span class="cursor-blink"></span></div>
         </div>
       </div>
-      <div class="project-visual">
-        <div class="demo-placeholder">
-          <div class="demo-placeholder-icon">▶</div>
-          <div class="demo-placeholder-text">System walk-through coming soon</div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-    </section>
-
-<!-- LIVE DEMOS -->
-<section id="demos" style="border-bottom:1px solid var(--border);padding:100px 40px;max-width:1280px;margin:0 auto;">
-  <div class="section-header">
-    <span class="section-label">03 — Live Demos</span>
-    <h2 class="section-title">See it <em>working.</em></h2>
-  </div>
-
-  <div style="display:flex;flex-direction:column;gap:48px;">
-
-    <!-- WSRG Demo -->
-    <div class="demo-card fade-up">
-      <div class="demo-card-header">
-        <div>
-          <div class="demo-card-title">WSRG AI Estimating Assistant</div>
-          <div class="demo-card-desc">Interactive walkthrough — PDF Scope mode and Visual AI mode. Click through the real interface.</div>
-        </div>
-        <span class="project-tag green" style="flex-shrink:0;"><span class="dot"></span>Live</span>
-      </div>
-      <div class="expand-bar">↓ &nbsp; hover to explore</div>
+      <div class="expand-bar">↓ &nbsp; hover to explore demo</div>
       <div class="demo-iframe-outer">
         <div class="demo-iframe-wrap">
           <iframe src="https://app.supademo.com/embed/cmospvez06b2aw9doquorsnh0" allowfullscreen loading="lazy" title="WSRG AI Estimating Assistant Demo"></iframe>
@@ -1138,16 +1031,125 @@ footer .f-right a:hover { color: var(--foreground); }
       </div>
     </div>
 
-    <!-- Consulting Demo placeholder -->
-    <div class="demo-card fade-up">
-      <div class="demo-card-header">
-        <div>
-          <div class="demo-card-title">AI Lead Gen & Nurture System</div>
-          <div class="demo-card-desc">End-to-end prospect enrichment and AI-personalised outreach automation for agencies.</div>
+    <!-- 002 — SkinIQ -->
+    <div class="pr fade-up">
+      <div class="pr-head">
+        <div class="project-content">
+          <div class="project-num">002</div>
+          <span class="project-tag green"><span class="dot"></span>Live</span>
+          <h3 class="project-title">SkinIQ Market Pulse</h3>
+          <p class="project-desc">Autonomous cosmeceutical market intelligence agent. Runs 24/7 on OpenClaw, executes 4 live web searches daily, synthesises signals through Claude API, and delivers structured intelligence reports to Telegram every morning at 08:00 BDT.</p>
+          <div class="project-stack">
+            <span class="stack-item">OpenClaw</span>
+            <span class="stack-item">Claude API</span>
+            <span class="stack-item">Telegram Bot</span>
+            <span class="stack-item">Autonomous Agent</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Abs0luteMadlad/skiniq-market-pulse" class="project-link" target="_blank">
+              GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
-        <span class="project-tag amber" style="flex-shrink:0;"><span class="dot"></span>Coming Soon</span>
+        <div class="project-visual">
+          <div class="terminal-line cmd">CRON 08:00 BDT — daily</div>
+          <div class="terminal-line output">→ Executing 4 web searches...</div>
+          <div class="terminal-line output">→ Signals: cosmeceuticals BD market</div>
+          <div class="terminal-line output">→ Claude synthesis in progress</div>
+          <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
+          <div class="terminal-line output">→ Formatting intelligence report</div>
+          <div class="terminal-line output">✓ Dispatched → Telegram<span class="cursor-blink"></span></div>
+        </div>
       </div>
-      <div class="expand-bar">↓ &nbsp; hover to explore</div>
+    </div>
+
+    <!-- 003 — CampaignOS -->
+    <div class="pr fade-up">
+      <div class="pr-head">
+        <div class="project-content">
+          <div class="project-num">003</div>
+          <span class="project-tag blue"><span class="dot"></span>In Progress</span>
+          <h3 class="project-title">CampaignOS</h3>
+          <p class="project-desc">AI-powered marketing campaign planner for FMCG brands. Input a product brief, get a full campaign structure — target segments, channels, budget split, KPIs — powered by Claude API. Built for the Bangladesh cosmeceutical market.</p>
+          <div class="project-stack">
+            <span class="stack-item">Claude API</span>
+            <span class="stack-item">Streamlit</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Prompt Engineering</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link muted">Coming Soon</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="terminal-line cmd">POST /plan</div>
+          <div class="terminal-line output">→ Parsing product brief...</div>
+          <div class="terminal-line output">→ Identifying target segments</div>
+          <div class="terminal-line output">→ Building channel strategy</div>
+          <div class="terminal-line output">→ Allocating budget split</div>
+          <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
+          <div class="terminal-line output">✓ Campaign structure generated<span class="cursor-blink"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 004 — SalesPulse -->
+    <div class="pr fade-up">
+      <div class="pr-head">
+        <div class="project-content">
+          <div class="project-num">004</div>
+          <span class="project-tag amber"><span class="dot"></span>In Progress</span>
+          <h3 class="project-title">SalesPulse</h3>
+          <p class="project-desc">Interactive FMCG sales performance analytics dashboard. Regional breakdowns, trend analysis, and an AI-generated weekly digest — all from a clean Streamlit interface built on synthetic BD market data.</p>
+          <div class="project-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Plotly</span>
+            <span class="stack-item">Streamlit</span>
+            <span class="stack-item">Pandas</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link muted">Coming Soon</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="terminal-line cmd">GET /dashboard</div>
+          <div class="terminal-line output">→ Loading 6 regional datasets...</div>
+          <div class="terminal-line output">→ Trend analysis: Q2 +14%</div>
+          <div class="terminal-line output">→ AI weekly digest generating</div>
+          <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
+          <div class="terminal-line output">✓ Dashboard ready<span class="cursor-blink"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 005 — AI Lead Gen (has demo placeholder) -->
+    <div class="pr has-demo fade-up">
+      <div class="pr-head">
+        <div class="project-content">
+          <div class="project-num">005 — System Demo</div>
+          <span class="project-tag amber"><span class="dot"></span>Recording</span>
+          <h3 class="project-title">AI Lead Gen & Nurture System</h3>
+          <p class="project-desc">End-to-end lead generation and nurture automation for agencies — prospect enrichment, AI-personalised outreach, and CRM pipeline on autopilot.</p>
+          <div class="project-stack">
+            <span class="stack-item">n8n</span>
+            <span class="stack-item">Zapier</span>
+            <span class="stack-item">Claude API</span>
+            <span class="stack-item">CRM Automation</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link muted">↓ hover to preview</span>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="terminal-line cmd">AGENT /prospect</div>
+          <div class="terminal-line output">→ Enriching 47 contacts...</div>
+          <div class="terminal-line output">→ Generating personalised copy</div>
+          <div class="terminal-line output">→ Updating CRM records</div>
+          <div class="terminal-line" style="margin-top:8px;">─────────────────────────────</div>
+          <div class="terminal-line output">✓ 12 sequences activated<span class="cursor-blink"></span></div>
+        </div>
+      </div>
+      <div class="expand-bar">↓ &nbsp; hover to explore demo</div>
       <div class="demo-iframe-outer">
         <div class="demo-iframe-wrap">
           <div class="demo-placeholder">
@@ -1163,7 +1165,7 @@ footer .f-right a:hover { color: var(--foreground); }
 
     <!-- EXPERIENCE --><section id="experience">
   <div class="section-header">
-    <span class="section-label">04 — Experience</span>
+    <span class="section-label">03 — Experience</span>
     <h2 class="section-title">Where I've <em>worked.</em></h2>
   </div>
 
@@ -1222,7 +1224,7 @@ footer .f-right a:hover { color: var(--foreground); }
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
   <div class="section-header" style="margin-bottom:64px;padding-bottom:24px;border-bottom:1px solid var(--border);">
-    <span class="section-label">05 — Contact</span>
+    <span class="section-label">04 — Contact</span>
   </div>
   <div class="contact-grid">
     <div class="contact-left fade-up">
