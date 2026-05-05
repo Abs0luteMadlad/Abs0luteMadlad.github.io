@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 :root {
@@ -53,7 +54,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
   transition: background 0.1s, color 0.1s;
@@ -139,14 +140,18 @@ nav.scrolled { border-bottom-color: var(--border); }
   background: transparent;
   color: var(--foreground);
 }
+.dark .nav-cta {
+  background: var(--primary);
+  border-color: var(--primary);
+}
 
 /* ── HERO ────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px 40px 80px;
+  justify-content: center;
+  padding: 80px 40px;
   border-bottom: 1px solid var(--border);
   position: relative;
 }
@@ -160,7 +165,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-foreground);
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 .hero-status-dot {
   width: 6px; height: 6px;
@@ -173,13 +178,14 @@ nav.scrolled { border-bottom-color: var(--border); }
 }
 
 .hero-name {
-  font-size: clamp(56px, 9vw, 128px);
+  font-size: clamp(40px, 7vw, 96px);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--foreground);
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  white-space: nowrap;
 }
 .hero-name .muted { color: var(--border); }
 
@@ -207,27 +213,6 @@ nav.scrolled { border-bottom-color: var(--border); }
   align-items: flex-start;
 }
 
-.hero-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.pill {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  color: var(--muted-foreground);
-  background: transparent;
-  transition: border-color 0.15s, color 0.15s;
-}
-.pill:hover, .pill.active {
-  border-color: var(--foreground);
-  color: var(--foreground);
-}
-
 .hero-ctas {
   display: flex;
   gap: 12px;
@@ -253,6 +238,10 @@ nav.scrolled { border-bottom-color: var(--border); }
 .btn-primary:hover {
   background: transparent;
   color: var(--foreground);
+}
+.dark .btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
 }
 .btn-secondary {
   font-family: var(--font-mono);
@@ -839,13 +828,15 @@ footer .f-right a:hover { color: var(--foreground); }
 </head>
 <body>
 
+<!-- Background -->
+<div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6;"></div>
+
 <!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">OGA.</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#demos">Demos</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -863,8 +854,7 @@ footer .f-right a:hover { color: var(--foreground); }
   </div>
 
   <h1 class="hero-name">
-    Osman<br>
-    Goni <span class="muted">Akash</span>
+    Osman Goni <span class="muted">Akash</span>
   </h1>
 
   <div class="hero-bottom">
@@ -874,48 +864,21 @@ footer .f-right a:hover { color: var(--foreground); }
       raw data into competitive advantage.
     </p>
     <div class="hero-right">
-      <div class="hero-pills">
-        <span class="pill active">Power BI</span>
-        <span class="pill active">Python</span>
-        <span class="pill active">SQL</span>
-        <span class="pill active">OpenClaw</span>
-        <span class="pill">n8n</span>
-        <span class="pill">Claude Code</span>
-        <span class="pill">CRM / MIS</span>
-        <span class="pill">Antigravity</span>
-      </div>
       <div class="hero-ctas">
         <a href="#projects" class="btn-primary">
           View Projects
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>    
         </a>
         <a href="https://abs0lutemadlad.github.io/" class="btn-secondary" target="_blank">
           Download CV
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
         </a>
       </div>
-    </div>
-  </div>
-</section>
+      </div>
+      </div>
+      </section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-item fade-up">
-    <div class="stat-num">14<sup>%</sup></div>
-    <div class="stat-label">Revenue increase driven at Veritas Digital</div>
-  </div>
-  <div class="stat-item fade-up fade-up-delay-1">
-    <div class="stat-num">3<sup>+</sup></div>
-    <div class="stat-label">Years Australian work experience</div>
-  </div>
-  <div class="stat-item fade-up fade-up-delay-2">
-    <div class="stat-num">4</div>
-    <div class="stat-label">AI & automation tools deployed in production</div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
+      <!-- ABOUT --><section id="about">
   <div class="section-header">
     <span class="section-label">01 — About</span>
     <h2 class="section-title">Analyst by degree.<br><em>Builder by instinct.</em></h2>
@@ -1079,57 +1042,35 @@ footer .f-right a:hover { color: var(--foreground); }
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- DEMOS -->
-<section id="demos" style="border-bottom:1px solid var(--border);padding:100px 40px;max-width:1280px;margin:0 auto;">
-  <div class="section-header">
-    <span class="section-label">03 — Live Demos</span>
-    <h2 class="section-title">Things you can <em>interact with.</em></h2>
-  </div>
-
-  <div class="demos-grid">
-
-    <div class="demo-card fade-up">
-      <div class="demo-card-header">
-        <div>
-          <div class="demo-card-title">WSRG AI Estimating Assistant</div>
-          <div class="demo-card-desc">Upload a tender PDF or site photos → AI generates a fully costed construction estimate grounded in Sydney Q2 2026 benchmark rates.</div>
+    <!-- DEMO: AI Lead Gen -->
+    <div class="project-card featured fade-up">
+      <div class="project-content">
+        <div class="project-num">005 — System Demo</div>
+        <span class="project-tag amber"><span class="dot"></span>Recording</span>
+        <h3 class="project-title">AI Lead Gen & Nurture System</h3>
+        <p class="project-desc">End-to-end lead generation and nurture automation for agencies — prospect enrichment, AI-personalised outreach, and CRM pipeline on autopilot.</p>
+        <div class="project-stack">
+          <span class="stack-item">n8n</span>
+          <span class="stack-item">Zapier</span>
+          <span class="stack-item">Claude API</span>
+          <span class="stack-item">CRM Automation</span>
         </div>
-        <span class="project-tag green" style="flex-shrink:0;white-space:nowrap"><span class="dot"></span>Live</span>
+        <div class="project-links">
+           <span class="project-link muted">Demo being recorded</span>
+        </div>
       </div>
-      <div class="demo-iframe-wrap">
-        <!-- Replace with: <iframe src="YOUR_SUPADEMO_EMBED_URL" allowfullscreen></iframe> -->
+      <div class="project-visual">
         <div class="demo-placeholder">
           <div class="demo-placeholder-icon">▶</div>
-          <div class="demo-placeholder-text">Interactive demo coming soon</div>
+          <div class="demo-placeholder-text">System walk-through coming soon</div>
         </div>
       </div>
     </div>
 
-    <div class="demo-card fade-up fade-up-delay-1">
-      <div class="demo-card-header">
-        <div>
-          <div class="demo-card-title">AI Lead Gen & Nurture System</div>
-          <div class="demo-card-desc">End-to-end lead generation and nurture automation for agencies — prospect enrichment, AI-personalised outreach, and CRM pipeline on autopilot.</div>
-        </div>
-        <span class="project-tag amber" style="flex-shrink:0;white-space:nowrap"><span class="dot"></span>Recording</span>
-      </div>
-      <div class="demo-iframe-wrap">
-        <!-- Replace with: <iframe src="YOUR_SUPADEMO_EMBED_URL" allowfullscreen></iframe> -->
-        <div class="demo-placeholder">
-          <div class="demo-placeholder-icon">▶</div>
-          <div class="demo-placeholder-text">Demo being recorded</div>
-        </div>
-      </div>
     </div>
+    </section>
 
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
+    <!-- EXPERIENCE --><section id="experience">
   <div class="section-header">
     <span class="section-label">04 — Experience</span>
     <h2 class="section-title">Where I've <em>worked.</em></h2>
@@ -1289,7 +1230,89 @@ footer .f-right a:hover { color: var(--foreground); }
   toggle.addEventListener('click', () => {
     const isDark = root.classList.toggle('dark');
     toggle.textContent = isDark ? 'Light' : 'Dark';
+    updateSurfaceColors();
   });
+
+  // Three.js Dotted Surface
+  let scene, camera, renderer, geometry, points;
+  let count = 0;
+  const SEPARATION = 150, AMOUNTX = 40, AMOUNTY = 60;
+
+  function initSurface() {
+    const container = document.getElementById('canvas-container');
+    scene = new THREE.Scene();
+    
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.set(0, 355, 1220);
+
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
+
+    geometry = new THREE.BufferGeometry();
+    const positions = [];
+    const colors = [];
+    const isDark = root.classList.contains('dark');
+    const colorVal = isDark ? 0.8 : 0.1;
+
+    for (let ix = 0; ix < AMOUNTX; ix++) {
+      for (let iy = 0; iy < AMOUNTY; iy++) {
+        positions.push(ix * SEPARATION - (AMOUNTX * SEPARATION) / 2, 0, iy * SEPARATION - (AMOUNTY * SEPARATION) / 2);
+        colors.push(colorVal, colorVal, colorVal);
+      }
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+      size: 8,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      sizeAttenuation: true
+    });
+
+    points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animateSurface();
+  }
+
+  function animateSurface() {
+    requestAnimationFrame(animateSurface);
+    const positions = geometry.attributes.position.array;
+    let i = 0;
+    for (let ix = 0; ix < AMOUNTX; ix++) {
+      for (let iy = 0; iy < AMOUNTY; iy++) {
+        positions[i * 3 + 1] = Math.sin((ix + count) * 0.3) * 50 + Math.sin((iy + count) * 0.5) * 50;
+        i++;
+      }
+    }
+    geometry.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    count += 0.015; // Really slow wave
+  }
+
+  function updateSurfaceColors() {
+    if (!geometry) return;
+    const colors = geometry.attributes.color.array;
+    const isDark = root.classList.contains('dark');
+    const colorVal = isDark ? 0.8 : 0.1;
+    for (let i = 0; i < colors.length; i++) {
+      colors[i] = colorVal;
+    }
+    geometry.attributes.color.needsUpdate = true;
+  }
+
+  initSurface();
 
   // Nav border on scroll
   const nav = document.getElementById('mainNav');
